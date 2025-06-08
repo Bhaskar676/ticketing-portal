@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="001-add-role-to-users" author="bmondal">
+        <addColumn tableName="users">
+            <column name="role" type="varchar(255)" defaultValue="USER" />
+        </addColumn>
+
+        <update tableName="users">
+            <column name="role" value="USER"/>
+        </update>
+
+        <addNotNullConstraint tableName="users" columnName="role" columnDataType="varchar(255)"/>
+    </changeSet>
+</databaseChangeLog>
