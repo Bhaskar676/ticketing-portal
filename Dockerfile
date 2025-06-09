@@ -1,11 +1,19 @@
-# Use a lightweight Java runtime
-FROM eclipse-temurin:21-jdk
-
-# Create app directory
+# Stage 1: Build the app using Gradle
+FROM gradle:8.0.0-jdk21 AS build
 WORKDIR /app
 
-# Copy the JAR built by Gradle
-COPY build/libs/ticketing-portal-0.0.1-SNAPSHOT.jar app.jar
+# Copy the project files
+COPY . .
+
+# Build the application using Gradle wrapper
+RUN ./gradlew build --no-daemon
+
+# Stage 2: Package the built JAR into a runtime container
+FROM eclipse-temurin:21-jdk
+WORKDIR /app
+
+# Copy only the JAR from the build stage
+COPY --from=build /app/build/libs/ticketing-portal-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the app port
 EXPOSE 8080

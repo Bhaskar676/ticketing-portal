@@ -19,7 +19,9 @@ services:
       retries: 5
 
   app:
-    build: src/main/java/com/ticketingportal
+    build:
+      context: .
+      dockerfile: src/main/java/com/ticketingportal/Dockerfile
     container_name: ticketing_app
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/ticketing_db
