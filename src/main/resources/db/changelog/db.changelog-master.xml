@@ -6,8 +6,13 @@
         xsi:schemaLocation="
         http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <include file="db/changelog/000-create-users-table.xml"/>
+    <include file="db/changelog/001-create-events-table.xml"/>
+    <include file="db/changelog/002-create-ticket-types-table.xml"/>
+    <include file="db/changelog/003-create-bookings-table.xml"/>
 
-    <include file="db/changelog/001-add-role-to-users.xml"/>
+<!--    <include file="db/changelog/001-add-role-to-users.xml"/>-->
     <include file="db/changelog/002-add-username-unique-constraint.xml"/>
-    <include file="db/changelog/003-add-ticket-types-and-update-bookings.xml"/>
+<!--    <include file="db/changelog/003-add-ticket-types-and-update-bookings.xml"/>-->
+
 </databaseChangeLog>

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:15
@@ -13,7 +11,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U app_user_pg"]
+      test: ["CMD-SHELL", "pg_isready -U app_user_pg -d ticketing_db"]
       interval: 10s
       timeout: 5s
       retries: 5

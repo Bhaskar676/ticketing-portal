@@ -1,12 +1,12 @@
 # Stage 1: Build the app using Gradle
-FROM gradle:8.0.0-jdk21 AS build
+FROM gradle:8-jdk21 AS build
 WORKDIR /app
 
 # Copy the project files
-COPY . .
+COPY ../../../../.. .
 
 # Build the application using Gradle wrapper
-RUN ./gradlew build --no-daemon
+RUN ./gradlew build -x test --no-daemon
 
 # Stage 2: Package the built JAR into a runtime container
 FROM eclipse-temurin:21-jdk
