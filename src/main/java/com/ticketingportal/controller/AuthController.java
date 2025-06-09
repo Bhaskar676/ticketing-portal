@@ -53,7 +53,7 @@ public class AuthController {
         User newUser = new User();
         newUser.setUsername(signUpRequest.getUsername());
         newUser.setEmail(signUpRequest.getEmail());
-        newUser.setPassword(signUpRequest.getPassword());
+        newUser.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
         newUser.setRole("USER");
 
         return userRepository.save(newUser);
