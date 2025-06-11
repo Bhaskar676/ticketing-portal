@@ -1,0 +1,39 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create-ticket-type-table" author="assistant">
+        <createTable tableName="ticket_types">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="available_seats" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="sale_start_date" type="TIMESTAMP"/>
+            <column name="sale_end_date" type="TIMESTAMP"/>
+            <column name="discount_price" type="DECIMAL(10,2)"/>
+            <column name="is_refundable" type="BOOLEAN"/>
+            <column name="seat_section" type="VARCHAR(100)"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="ticket_types"
+                baseColumnNames="event_id"
+                referencedTableName="events"
+                referencedColumnNames="id"
+                constraintName="fk_tickettype_event"/>
+    </changeSet>
+
+</databaseChangeLog>

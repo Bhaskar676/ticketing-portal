@@ -1,0 +1,33 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create-event-table" author="assistant">
+        <createTable tableName="events">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_start_date" type="TIMESTAMP"/>
+            <column name="event_end_date" type="TIMESTAMP"/>
+            <column name="organizer_name" type="VARCHAR(200)"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="banner_image_url" type="VARCHAR(1000)"/>
+            <column name="category" type="VARCHAR(100)"/>
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="max_capacity" type="INT"/>
+            <column name="venue_details" type="VARCHAR(1000)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

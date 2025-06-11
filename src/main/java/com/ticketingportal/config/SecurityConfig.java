@@ -28,14 +28,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())   // disable CSRF for API testing
+                .csrf(csrf -> csrf.disable()) // disable CSRF for API testing
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/events/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/users/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/events/**").hasAuthority("ADMIN")
-                        .requestMatchers("/events/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);  // allow all requests
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
 }
