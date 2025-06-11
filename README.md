@@ -45,12 +45,7 @@ git clone https://github.com/yourusername/ticketing-portal.git
 cd ticketing-portal
 ```
 
-### 2️⃣ Build the Application
-```bash
-./gradlew clean build
-```
-
-### 3️⃣ Start the App + Database with Docker Compose
+### 2️⃣ Start the App + Database with Docker Compose
 ```bash
 docker-compose up --build
 ```
@@ -58,12 +53,6 @@ docker-compose up --build
 ✅ This will:
 - Start PostgreSQL on port 5432
 - Start the Spring Boot app on port 8080
-
-### 4️⃣ Access the App
-Open your browser to:
-```
-http://localhost:8080
-```
 
 ---
 
